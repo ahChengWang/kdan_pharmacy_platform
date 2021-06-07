@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\kdan_PhantomMask\\PharmacyMask\\PharmacyMask\\PharmacyMask.csproj": {}
+    "D:\\kdan_PharmacyPlatform\\pharmacy-platform\\src\\PharmacyMask\\PharmacyMask.csproj": {}
   },
   "projects": {
-    "D:\\kdan_PhantomMask\\PharmacyMask\\PharmacyMask\\PharmacyMask.csproj": {
+    "D:\\kdan_PharmacyPlatform\\pharmacy-platform\\src\\PharmacyMask\\PharmacyMask.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\kdan_PhantomMask\\PharmacyMask\\PharmacyMask\\PharmacyMask.csproj",
+        "projectUniqueName": "D:\\kdan_PharmacyPlatform\\pharmacy-platform\\src\\PharmacyMask\\PharmacyMask.csproj",
         "projectName": "PharmacyMask",
-        "projectPath": "D:\\kdan_PhantomMask\\PharmacyMask\\PharmacyMask\\PharmacyMask.csproj",
+        "projectPath": "D:\\kdan_PharmacyPlatform\\pharmacy-platform\\src\\PharmacyMask\\PharmacyMask.csproj",
         "packagesPath": "C:\\Users\\shihc\\.nuget\\packages\\",
-        "outputPath": "D:\\kdan_PhantomMask\\PharmacyMask\\PharmacyMask\\obj\\",
+        "outputPath": "D:\\kdan_PharmacyPlatform\\pharmacy-platform\\src\\PharmacyMask\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\shihc\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -51,6 +51,10 @@
             "MySql.Data": {
               "target": "Package",
               "version": "[8.0.25, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.1.4, )"
             }
           },
           "imports": [
