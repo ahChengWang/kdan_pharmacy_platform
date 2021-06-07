@@ -1,0 +1,18 @@
+CREATE TABLE IF NOT EXISTS `user_transaction_history` (
+  `Id` INT(11) NOT NULL AUTO_INCREMENT,
+  `TransactionDate` DATETIME NOT NULL,
+  `UserId` INT(11) NOT NULL,
+  `PharmacyId` INT(10) NOT NULL,
+  `ProductTypeId` INT(10) NOT NULL,
+  `ProductDetailId` INT(10) NOT NULL,
+  `Remark` VARCHAR(100) NOT NULL DEFAULT '' COLLATE 'utf8mb4_unicode_ci',
+  `TransactionAmount` DECIMAL(20,4) NOT NULL,
+  `CreateUser` VARCHAR(50) NOT NULL DEFAULT '',
+  `CreateTime` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdateUser` VARCHAR(50) NOT NULL DEFAULT '',
+  `UpdateTime` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`Id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci
+COMMENT = '客戶歷史交易資料';
