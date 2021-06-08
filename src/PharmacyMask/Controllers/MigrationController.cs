@@ -2,12 +2,13 @@
 using PharmacyMask.BackOffice.Model;
 using PharmacyMask.DomainService;
 using PharmacyMask.DomainService.Entity;
+using PharmacyMask.Fundation.Definition.Enum;
 using PharmacyMask.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PharmacyMask.Controller
+namespace PharmacyMask.Controllers
 {
     [ApiController]
     [Route("[controller]/[action]")]
@@ -28,8 +29,14 @@ namespace PharmacyMask.Controller
             _userDomainService = userDomainService;
         }
 
+        /// <summary>
+        /// insert pharmacy and mask data
+        /// </summary>
+        /// <param name="pharmaciesModel">import pharmacies.json </param>
+        /// <response code="100">success</response>
+        /// <response code="101">fail</response>
         [HttpPost]
-        public string InsertPharmaciesMaskData(List<PharmaciesMigraModel> pharmaciesModel)
+        public ResponseModel<string> InsertPharmaciesMaskData(List<PharmaciesMigraModel> pharmaciesModel)
         {
             try
             {
@@ -57,9 +64,17 @@ namespace PharmacyMask.Controller
                         })).ToList());
 
                 if (pharmacyMigraResult && maskMigraResult)
-                    return "insert data success";
+                    return new ResponseModel<string>
+                    {
+                        ResponseCode = ResponseCodeEnum.Success,
+                        Data = "insert data success"
+                    };
                 else
-                    return "insert data faile";
+                    return new ResponseModel<string>
+                    {
+                        ResponseCode = ResponseCodeEnum.Fail,
+                        Data = "insert data faile"
+                    };
             }
             catch (Exception ex)
             {
@@ -67,8 +82,14 @@ namespace PharmacyMask.Controller
             }
         }
 
+        /// <summary>
+        /// insert user mask data
+        /// </summary>
+        /// <param name="userModel">import users.json </param>
+        /// <response code="100">success</response>
+        /// <response code="101">fail</response>
         [HttpPost]
-        public string InsertUserData(List<UserMigraModel> userModel)
+        public ResponseModel<string> InsertUserData(List<UserMigraModel> userModel)
         {
             try
             {
@@ -89,17 +110,24 @@ namespace PharmacyMask.Controller
                         };
                     }).ToList());
 
+
                 if (inserUserDataResult)
-                    return "insert user data success.";
+                    return new ResponseModel<string>
+                    {
+                        ResponseCode = ResponseCodeEnum.Success,
+                        Data = "insert user data success."
+                    };
                 else
-                    return "insert user data faile.";
+                    return new ResponseModel<string>
+                    {
+                        ResponseCode = ResponseCodeEnum.Fail,
+                        Data = "insert user data faile."
+                    };
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
-
         }
     }
 }

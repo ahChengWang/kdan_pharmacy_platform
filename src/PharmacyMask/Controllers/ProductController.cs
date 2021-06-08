@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PharmacyMask.DomainService;
 using PharmacyMask.DomainService.Entity;
+using PharmacyMask.Fundation.Definition.Enum;
 using PharmacyMask.Model;
 using System;
 
-namespace PharmacyMask.Controller
+namespace PharmacyMask.Controllers
 {
     [ApiController]
     [Route("[controller]/[action]")]
@@ -21,8 +22,10 @@ namespace PharmacyMask.Controller
         /// Edit mask name
         /// </summary>
         /// <param name="maskEditModel"></param>
+        /// <response code="100">success</response>
+        /// <response code="101">fail</response>
         [HttpPut]
-        public string UpdateMask(ProductMaskEditModel maskEditModel)
+        public ResponseModel<string> UpdateMask(ProductMaskEditModel maskEditModel)
         {
             try
             {
@@ -32,10 +35,19 @@ namespace PharmacyMask.Controller
                     ProductName = maskEditModel.MaskName
                 });
 
+
                 if (updResult)
-                    return "update mask success.";
+                    return new ResponseModel<string>
+                    {
+                        ResponseCode = ResponseCodeEnum.Success,
+                        Data = "update mask success."
+                    };
                 else
-                    return "update mask fail.";
+                    return new ResponseModel<string>
+                    {
+                        ResponseCode = ResponseCodeEnum.Fail,
+                        Data = "update mask fail."
+                    };
             }
             catch (Exception ex)
             {

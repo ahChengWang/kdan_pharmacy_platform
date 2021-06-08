@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PharmacyMask.DomainService;
 using PharmacyMask.DomainService.Entity;
+using PharmacyMask.Fundation.Definition.Enum;
 using PharmacyMask.Model;
 using System;
 using System.Linq;
@@ -23,8 +24,10 @@ namespace PharmacyMask.Controllers
         /// and handle all relevant data changes in an atomic transaction
         /// </summary>
         /// <param name="createModel"></param>
+        /// <response code="100">success</response>
+        /// <response code="101">fail</response>
         [HttpPost]
-        public string CreatePurchase(PurchaseCreateModel createModel)
+        public ResponseModel<string> CreatePurchase(PurchaseCreateModel createModel)
         {
             try
             {
@@ -40,10 +43,18 @@ namespace PharmacyMask.Controllers
                     }).ToList()
                 });
 
-                if(createResult)
-                    return "create purchase success.";
+                if (createResult)
+                    return new ResponseModel<string>
+                    {
+                        ResponseCode = ResponseCodeEnum.Success,
+                        Data = "create purchase success."
+                    };
                 else
-                    return "create purchase fail.";
+                    return new ResponseModel<string>
+                    {
+                        ResponseCode = ResponseCodeEnum.Fail,
+                        Data = "create purchase fail."
+                    };
             }
             catch (Exception ex)
             {

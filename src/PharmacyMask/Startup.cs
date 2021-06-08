@@ -7,6 +7,7 @@ using PharmacyMask.DomainService;
 using PharmacyMask.Fundation.Factory;
 using PharmacyMask.Fundation.Repository;
 using Swashbuckle.AspNetCore.SwaggerUI;
+using System.IO;
 
 namespace PharmacyMask
 {
@@ -22,7 +23,13 @@ namespace PharmacyMask
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(g =>
+            {
+                var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
+                var xmlPath = Path.Combine(basePath, "Pharmacy.API.Platform.xml");
+
+                g.IncludeXmlComments(xmlPath);
+            });
             services.AddControllers();
             services.AddSingleton<PharmacyRepository>();
             services.AddSingleton<PharmacyDetailRepository>();
@@ -65,8 +72,8 @@ namespace PharmacyMask
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            }); 
-            
+            });
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

@@ -28,9 +28,10 @@ namespace PharmacyMask.Controllers
         /// List all masks that are sold by a given pharmacy, sorted by mask name or mask price
         /// </summary>
         /// <param name="searchModel"></param>
-        /// <returns></returns>
+        /// <response code="100">success</response>
+        /// <response code="101">fail</response>
         [HttpGet]
-        public List<PharmacyMasksModel> GetMasksByPharmacy([FromQuery] PharmacyMaskSearchModel searchModel)
+        public ResponseModel<List<PharmacyMasksModel>> GetMasksByPharmacy([FromQuery] PharmacyMaskSearchModel searchModel)
         {
             try
             {
@@ -64,7 +65,12 @@ namespace PharmacyMask.Controllers
                     default:
                         break;
                 }
-                return result;
+
+                return new ResponseModel<List<PharmacyMasksModel>>
+                {
+                    ResponseCode = ResponseCodeEnum.Success,
+                    Data = result
+                };
             }
             catch (Exception ex)
             {
@@ -76,8 +82,10 @@ namespace PharmacyMask.Controllers
         /// List all pharmacies that have more or less than x mask products within a price range
         /// </summary>
         /// <param name="searchModel"></param>
+        /// <response code="100">success</response>
+        /// <response code="101">fail</response>
         [HttpGet]
-        public List<PharmaciesMaskSummaryModel> GetPharmaciesMaskSummary([FromQuery] PharmacyMaskSearchModel searchModel)
+        public ResponseModel<List<PharmaciesMaskSummaryModel>> GetPharmaciesMaskSummary([FromQuery] PharmacyMaskSearchModel searchModel)
         {
             try
             {
@@ -97,7 +105,11 @@ namespace PharmacyMask.Controllers
                     MaskCnt = s.MaskProductCnt
                 }).ToList();
 
-                return result;
+                return new ResponseModel<List<PharmaciesMaskSummaryModel>>
+                {
+                    ResponseCode = ResponseCodeEnum.Success,
+                    Data = result
+                };
             }
             catch (Exception ex)
             {
@@ -110,8 +122,10 @@ namespace PharmacyMask.Controllers
         /// Search for pharmacies or masks by name, ranked by relevance to search term
         /// </summary>
         /// <param name="searchModel"></param>
+        /// <response code="100">success</response>
+        /// <response code="101">fail</response>
         [HttpGet]
-        public List<PharmacyMasksModel> GetPharmaciesMaskBySearchTerm([FromQuery] PharmacyMaskSearchModel searchModel)
+        public ResponseModel<List<PharmacyMasksModel>> GetPharmaciesMaskBySearchTerm([FromQuery] PharmacyMaskSearchModel searchModel)
         {
             try
             {
@@ -147,7 +161,11 @@ namespace PharmacyMask.Controllers
                         break;
                 }
 
-                return result;
+                return new ResponseModel<List<PharmacyMasksModel>>
+                {
+                    ResponseCode = ResponseCodeEnum.Success,
+                    Data = result
+                };
             }
             catch (Exception ex)
             {
@@ -159,9 +177,10 @@ namespace PharmacyMask.Controllers
         /// Edit mask price
         /// </summary>
         /// <param name="productEditModel"></param>
-        /// <returns></returns>
+        /// <response code="100">success</response>
+        /// <response code="101">fail</response>
         [HttpPut]
-        public string UpdatePrice(PharmacyProductEditModel productEditModel)
+        public ResponseModel<string> UpdatePrice(PharmacyProductEditModel productEditModel)
         {
             try
             {
@@ -171,10 +190,18 @@ namespace PharmacyMask.Controllers
                     Price = productEditModel.Price
                 });
 
-                if(updResult)
-                    return "update price success.";
+                if (updResult)
+                    return new ResponseModel<string>
+                    {
+                        ResponseCode = ResponseCodeEnum.Success,
+                        Data = "update price success."
+                    };
                 else
-                    return "update price fail.";
+                    return new ResponseModel<string>
+                    {
+                        ResponseCode = ResponseCodeEnum.Fail,
+                        Data = "update price fail."
+                    };
             }
             catch (Exception ex)
             {
@@ -187,12 +214,13 @@ namespace PharmacyMask.Controllers
         /// Remove a mask product from a pharmacy given by mask name
         /// </summary>
         /// <param name="productDeleteModel"></param>
-        [HttpPut]
-        public string DeleteProduct(ProductDeleteModel productDeleteModel)
+        /// <response code="100">success</response>
+        /// <response code="101">fail</response>
+        [HttpDelete]
+        public ResponseModel<string> DeleteProduct(ProductDeleteModel productDeleteModel)
         {
             try
             {
-
                 var delResult = _salesManagementDomainService.DeleteProduct(new PharmacyProductEntity
                 {
                     PharmacyId = productDeleteModel.PharmacyId,
@@ -200,9 +228,17 @@ namespace PharmacyMask.Controllers
                 });
 
                 if (delResult)
-                    return "delete pharmacy mask success.";
+                    return new ResponseModel<string>
+                    {
+                        ResponseCode = ResponseCodeEnum.Success,
+                        Data = "delete pharmacy mask success."
+                    };
                 else
-                    return "delete pharmacy mask fail.";
+                    return new ResponseModel<string>
+                    {
+                        ResponseCode = ResponseCodeEnum.Fail,
+                        Data = "delete pharmacy mask fail."
+                    };
             }
             catch (Exception ex)
             {

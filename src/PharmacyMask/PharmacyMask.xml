@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PharmacyMask</name>
+    </assembly>
+    <members>
+        <member name="M:PharmacyMask.Controllers.BalanceController.GetUserTransactionHistory(System.DateTime,System.DateTime)">
+            <summary>
+            The top x users by total transaction amount of masks within a date range
+            </summary>
+            <param name="dateTimeFrom"></param>
+            <param name="dateTimeTo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PharmacyMask.Controllers.BalanceController.GetMasksTransactionSummary(System.DateTime,System.DateTime)">
+            <summary>
+            The total amount of masks and dollar value of transactions that happened within a date range
+            </summary>
+            <param name="dateTimeFrom"></param>
+            <param name="dateTimeTo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PharmacyMask.Controllers.PurchaseController.CreatePurchase(PharmacyMask.Model.PurchaseCreateModel)">
+            <summary>
+            Process a user purchases a mask from a pharmacy;
+            and handle all relevant data changes in an atomic transaction
+            </summary>
+            <param name="createModel"></param>
+        </member>
+        <member name="M:PharmacyMask.Controllers.SalesManagementController.GetMasksByPharmacy(PharmacyMask.BackOffice.Model.PharmacyMaskSearchModel)">
+            <summary>
+            List all masks that are sold by a given pharmacy, sorted by mask name or mask price
+            </summary>
+            <param name="searchModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PharmacyMask.Controllers.SalesManagementController.GetPharmaciesMaskSummary(PharmacyMask.BackOffice.Model.PharmacyMaskSearchModel)">
+            <summary>
+            List all pharmacies that have more or less than x mask products within a price range
+            </summary>
+            <param name="searchModel"></param>
+        </member>
+        <member name="M:PharmacyMask.Controllers.SalesManagementController.GetPharmaciesMaskBySearchTerm(PharmacyMask.BackOffice.Model.PharmacyMaskSearchModel)">
+            <summary>
+            Search for pharmacies or masks by name, ranked by relevance to search term
+            </summary>
+            <param name="searchModel"></param>
+        </member>
+        <member name="M:PharmacyMask.Controllers.SalesManagementController.UpdatePrice(PharmacyMask.Model.PharmacyProductEditModel)">
+            <summary>
+            Edit mask price
+            </summary>
+            <param name="productEditModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PharmacyMask.Controllers.SalesManagementController.DeleteProduct(PharmacyMask.Model.ProductDeleteModel)">
+            <summary>
+            Remove a mask product from a pharmacy given by mask name
+            </summary>
+            <param name="productDeleteModel"></param>
+        </member>
+        <member name="M:PharmacyMask.Controller.PharmacyController.GetOpenTime(System.String)">
+            <summary>
+            1. List all pharmacies that are open at a certain datetime
+            2. List all pharmacies that are open on a day of the week, at a certain time
+            </summary>
+            <param name="dayOfWeek">
+            不代參數, return 1.
+            </param>
+            <remarks>這裡是remarks</remarks>
+        </member>
+        <member name="M:PharmacyMask.Controller.PharmacyController.UpdatePharmacy(PharmacyMask.Model.PharmacyEditModel)">
+            <summary>
+            Edit pharmacy name
+            </summary>
+            <param name="pharmacyEditModel"></param>
+        </member>
+        <member name="M:PharmacyMask.Controller.ProductController.UpdateMask(PharmacyMask.Model.ProductMaskEditModel)">
+            <summary>
+            Edit mask name
+            </summary>
+            <param name="maskEditModel"></param>
+        </member>
+        <member name="M:PharmacyMask.DomainService.BalanceDomainService.GetUserTranSummaryByOption(System.DateTime,System.DateTime)">
+            <summary>
+            The top x users by total transaction amount of masks within a date range
+            </summary>
+            <param name="tranDateFrom"></param>
+            <param name="tranDateTo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PharmacyMask.DomainService.PharmacyDomainService.ConvertDayStr(System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
+            <summary>
+            將輸入的星期 前三碼轉換為 星期Enum
+            </summary>
+            <param name="sourceDayStr"></param>
+            <param name="isRange"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PharmacyMask.DomainService.PharmacyDomainService.AddRangeDay(System.DayOfWeek,System.DayOfWeek,System.Collections.Generic.List{System.DayOfWeek})">
+            <summary>
+            若open hours為一段區間, 補上中間的星期
+            ex.open mon - thu, add tuesday、wednesday
+            </summary>
+            <param name="startDay"></param>
+            <param name="endDay"></param>
+            <param name="srcDayList"></param>
+            <returns></returns>
+        </member>
+        <member name="P:PharmacyMask.BackOffice.Model.PharmacyMaskSearchModel.SearchTermId">
+            <summary>
+            1. 後端出 pharmay option 列出所有藥局及對應 id, 多選 id逗號串聯 
+            2. 利用字串 模糊查詢 (V)
+            </summary>
+        </member>
+    </members>
+</doc>
