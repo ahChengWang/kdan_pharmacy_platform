@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace PharmacyMask.Fundation.Repository
 {
-    public class PharmacyProductRepository
+    public class PharmacyProductRepository : IPharmacyProductRepository
     {
         private readonly IDbHelper _dbHelper = DbHelperFactory.Get();
 

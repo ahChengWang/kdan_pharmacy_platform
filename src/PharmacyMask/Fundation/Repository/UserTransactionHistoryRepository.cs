@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace PharmacyMask.Fundation.Repository
 {
-    public class UserTransactionHistoryRepository
+    public class UserTransactionHistoryRepository : IUserTransactionHistoryRepository
     {
         private readonly IDbHelper _dbHelper = DbHelperFactory.Get();
 

@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace PharmacyMask.Fundation.Repository
 {
-    public class PharmacyDetailRepository
+    public class PharmacyDetailRepository : IPharmacyDetailRepository
     {
         private readonly IDbHelper _dbHelper = DbHelperFactory.Get();
 
@@ -50,7 +50,7 @@ VALUES
                 sql += "AND DayOfWeek IN @DayOfWeek";
             }
 
-            return _dbHelper.ExecuteQuery<PharmacyDetailDao>(sql, new 
+            return _dbHelper.ExecuteQuery<PharmacyDetailDao>(sql, new
             {
                 DayOfWeek = dayOfWeek
             });

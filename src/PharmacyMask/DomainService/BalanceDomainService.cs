@@ -11,21 +11,21 @@ namespace PharmacyMask.DomainService
     public class BalanceDomainService : IBalanceDomainService
     {
         private readonly IUserDomainService _userDomainService;
-        private readonly UserBalanceRepository _userBalanceRepository;
-        private readonly UserBalanceLogRepository _userBalanceLogRepository;
-        private readonly UserTransactionHistoryRepository _userTransactionHistoryRepository;
-        private readonly PharmacyBalanceRepository _pharmacyBalanceRepository;
-        private readonly PharmacyBalanceLogRepository _pharmacyBalanceLogRepository;
+        private readonly IUserBalanceRepository _userBalanceRepository;
+        private readonly IUserBalanceLogRepository _userBalanceLogRepository;
+        private readonly IUserTransactionHistoryRepository _userTransactionHistoryRepository;
+        private readonly IPharmacyBalanceRepository _pharmacyBalanceRepository;
+        private readonly IPharmacyBalanceLogRepository _pharmacyBalanceLogRepository;
         private readonly IMaskService _maskService;
         private readonly IPharmacyDomainService _pharmacyDomainService;
 
         public BalanceDomainService(
             IUserDomainService userDomainService,
-            UserBalanceRepository userBalanceRepository,
-            UserBalanceLogRepository userBalanceLogRepository,
-            UserTransactionHistoryRepository userTransactionHistoryRepository,
-            PharmacyBalanceRepository pharmacyBalanceRepository,
-            PharmacyBalanceLogRepository pharmacyBalanceLogRepository,
+            IUserBalanceRepository userBalanceRepository,
+            IUserBalanceLogRepository userBalanceLogRepository,
+            IUserTransactionHistoryRepository userTransactionHistoryRepository,
+            IPharmacyBalanceRepository pharmacyBalanceRepository,
+            IPharmacyBalanceLogRepository pharmacyBalanceLogRepository,
             IMaskService maskService,
             IPharmacyDomainService pharmacyDomainService)
         {
@@ -72,8 +72,8 @@ namespace PharmacyMask.DomainService
             DateTime tranDateFrom,
             DateTime tranDateTo)
         {
-            var userList = _userDomainService.GetUserInfo(userIdList, null);
-            var userTranHistoryId = _userTransactionHistoryRepository.SelectByOption(
+            var userList = GetUserInfo(userIdList, null);
+            var userTranHistoryId = GetUserTransactionHistory(
                 userList.Select(s => s.Id).ToList(),
                 null,
                 null,
@@ -82,12 +82,12 @@ namespace PharmacyMask.DomainService
                 null,
                 null);
 
-            var maskList = _maskService.GetMaskDetail(new MaskSearchOptionEntity
+            var maskList = GetMaskDetail(new MaskSearchOptionEntity
             {
                 MaskDetailIdList = userTranHistoryId.Select(s => s.ProductDetailId).ToList(),
             });
 
-            var pharmacyList = _pharmacyDomainService.GetPharmacyInfo(userTranHistoryId.Select(s => s.PharmacyId).ToList(), null);
+            var pharmacyList = GetPharmacyInfo(userTranHistoryId.Select(s => s.PharmacyId).ToList(), null);
 
             return (from uth in userTranHistoryId
                     join u in userList
@@ -171,6 +171,36 @@ namespace PharmacyMask.DomainService
             }
             return updBalResult;
         }
+
+
+        #region private
+        protected virtual List<UserEntity> GetUserInfo(List<int> userIdList,string userName)
+        => _userDomainService.GetUserInfo(userIdList, userName);
+
+        protected virtual List<UserTransactionHistoryDao> GetUserTransactionHistory(
+            List<int> userIdList, 
+            List<int> pharmacyIdList, 
+            List<int> productDetailIdList, 
+            DateTime? transactionDateFrom, 
+            DateTime? transactionDateTo, 
+            decimal? transactionAmountFrom, 
+            decimal? transactionAmountTo)
+        => _userTransactionHistoryRepository.SelectByOption(
+                userIdList,
+                pharmacyIdList,
+                productDetailIdList,
+                transactionDateFrom,
+                transactionDateTo,
+                transactionAmountFrom,
+                transactionAmountTo);
+
+        protected virtual List<MaskDetailEntity> GetMaskDetail(MaskSearchOptionEntity optionEntity)
+        => _maskService.GetMaskDetail(optionEntity);
+
+        protected virtual List<PharmacyEntity> GetPharmacyInfo(List<int> pharmacyId, string pharmacyName)
+        => _pharmacyDomainService.GetPharmacyInfo(pharmacyId, pharmacyName);
+
+        #endregion
 
     }
 }

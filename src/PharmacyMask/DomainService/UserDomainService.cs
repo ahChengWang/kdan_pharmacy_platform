@@ -11,20 +11,20 @@ namespace PharmacyMask.DomainService
 {
     public class UserDomainService : IUserDomainService
     {
-        private readonly UserRepository _userRepository;
-        private readonly UserTransactionHistoryRepository _userTransactionHistoryRepository;
-        private readonly UserBalanceRepository _userWalletRepository;
-        private readonly MaskRepository _maskRepository;
-        private readonly MaskDetailRepository _maskInfoRepository;
-        private readonly PharmacyRepository _pharmacyRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly IUserTransactionHistoryRepository _userTransactionHistoryRepository;
+        private readonly IUserBalanceRepository _userWalletRepository;
+        private readonly IMaskRepository _maskRepository;
+        private readonly IMaskDetailRepository _maskInfoRepository;
+        private readonly IPharmacyRepository _pharmacyRepository;
 
         public UserDomainService(
-            UserRepository userRepository,
-            UserTransactionHistoryRepository userTransactionHistoryRepository,
-            UserBalanceRepository userWalletRepository,
-            MaskRepository maskRepository,
-            MaskDetailRepository maskInfoRepository,
-            PharmacyRepository pharmacyRepository)
+            IUserRepository userRepository,
+            IUserTransactionHistoryRepository userTransactionHistoryRepository,
+            IUserBalanceRepository userWalletRepository,
+            IMaskRepository maskRepository,
+            IMaskDetailRepository maskInfoRepository,
+            IPharmacyRepository pharmacyRepository)
         {
             _userRepository = userRepository;
             _userTransactionHistoryRepository = userTransactionHistoryRepository;

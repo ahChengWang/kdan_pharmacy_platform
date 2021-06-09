@@ -8,12 +8,12 @@ namespace PharmacyMask.DomainService
 {
     public class ProductDomainService : IProductDomainService
     {
-        private readonly PharmacyProductRepository _pharmacyProductRepository;
-        private readonly MaskService _maskService;
+        private readonly IPharmacyProductRepository _pharmacyProductRepository;
+        private readonly IMaskService _maskService;
 
         public ProductDomainService(
-            PharmacyProductRepository pharmacyProductRepository,
-            MaskService maskService
+            IPharmacyProductRepository pharmacyProductRepository,
+            IMaskService maskService
             )
         {
             _pharmacyProductRepository = pharmacyProductRepository;

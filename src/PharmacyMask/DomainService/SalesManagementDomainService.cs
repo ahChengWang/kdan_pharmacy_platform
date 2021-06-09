@@ -12,17 +12,17 @@ namespace PharmacyMask.DomainService
 {
     public class SalesManagementDomainService : ISalesManagementDomainService
     {
-        private readonly MaskRepository _maskRepository;
-        private readonly MaskDetailRepository _maskInfoRepository;
-        private readonly PharmacyProductRepository _pharmacyProductRepository;
-        private readonly PharmacyRepository _pharmacyRepository;
+        private readonly IMaskRepository _maskRepository;
+        private readonly IMaskDetailRepository _maskInfoRepository;
+        private readonly IPharmacyProductRepository _pharmacyProductRepository;
+        private readonly IPharmacyRepository _pharmacyRepository;
         private readonly IMaskService _maskDomainService;
 
         public SalesManagementDomainService(
-            MaskRepository maskRepository,
-            MaskDetailRepository maskInfoRepository,
-            PharmacyProductRepository pharmacyProductRepository,
-            PharmacyRepository pharmacyRepository,
+            IMaskRepository maskRepository,
+            IMaskDetailRepository maskInfoRepository,
+            IPharmacyProductRepository pharmacyProductRepository,
+            IPharmacyRepository pharmacyRepository,
             IMaskService maskDomainService
             )
         {
@@ -34,14 +34,7 @@ namespace PharmacyMask.DomainService
         }
 
         public List<PharmacyProductEntity> GetPharmacyProductList(PharmacyProductOptionEntity optionEntity)
-        => _pharmacyProductRepository.SelectByOption(
-                optionEntity.IdList,
-                optionEntity.PharmacyIdList,
-                optionEntity.TypeDetailIdList,
-                optionEntity.ProductTypeIdList,
-                optionEntity.PriceFrom,
-                optionEntity.PriceTo
-                ).Select(s => s.Adapt<PharmacyProductEntity>()).ToList();
+        => GetPharmacyProduct(optionEntity);
 
         public List<PharmacyProductMaskEntity> GetPharmacyProductMaskList(
             ProductSearchEntity searchEntity,
@@ -52,13 +45,13 @@ namespace PharmacyMask.DomainService
                 searchEntity.PriceFrom > searchEntity.PriceTo)
                 throw new Exception();
 
-            var msakDetailList = _maskDomainService.GetMaskDetail(new MaskSearchOptionEntity
+            var msakDetailList = GetMaskDetail(new MaskSearchOptionEntity
             {
                 MaskIdList = null,
                 MaskName = searchEntity.ProductName
             });
 
-            var pharmacyProductMaskList = GetPharmacyProductList(new PharmacyProductOptionEntity
+            var pharmacyProductMaskList = GetPharmacyProduct(new PharmacyProductOptionEntity
             {
                 IdList = null,
                 PharmacyIdList = null,
@@ -262,5 +255,22 @@ namespace PharmacyMask.DomainService
                     scope.Complete();
             }
         }
+
+        #region private
+
+        protected virtual List<MaskDetailEntity> GetMaskDetail(MaskSearchOptionEntity optionEntity)
+        => _maskDomainService.GetMaskDetail(optionEntity);
+
+        protected virtual List<PharmacyProductEntity> GetPharmacyProduct(PharmacyProductOptionEntity optionEntity)
+        => _pharmacyProductRepository.SelectByOption(
+                optionEntity.IdList,
+                optionEntity.PharmacyIdList,
+                optionEntity.TypeDetailIdList,
+                optionEntity.ProductTypeIdList,
+                optionEntity.PriceFrom,
+                optionEntity.PriceTo
+                ).Select(s => s.Adapt<PharmacyProductEntity>()).ToList();
+
+        #endregion
     }
 }

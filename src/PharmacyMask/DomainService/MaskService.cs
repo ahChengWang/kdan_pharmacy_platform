@@ -12,16 +12,16 @@ namespace PharmacyMask.DomainService
 {
     public class MaskService : IMaskService
     {
-        private readonly MaskRepository _maskRepository;
-        private readonly MaskDetailRepository _maskInfoRepository;
-        private readonly PharmacyProductRepository _pharmacyProductRepository;
-        private readonly PharmacyRepository _pharmacyRepository;
+        private readonly IMaskRepository _maskRepository;
+        private readonly IMaskDetailRepository _maskInfoRepository;
+        private readonly IPharmacyProductRepository _pharmacyProductRepository;
+        private readonly IPharmacyRepository _pharmacyRepository;
 
         public MaskService(
-            MaskRepository maskRepository,
-            MaskDetailRepository maskInfoRepository,
-            PharmacyProductRepository pharmacyProductRepository,
-            PharmacyRepository pharmacyRepository
+            IMaskRepository maskRepository,
+            IMaskDetailRepository maskInfoRepository,
+            IPharmacyProductRepository pharmacyProductRepository,
+            IPharmacyRepository pharmacyRepository
             )
         {
             _maskRepository = maskRepository;

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace PharmacyMask.Fundation.Repository
 {
-    public class PharmacyBalanceRepository
+    public class PharmacyBalanceRepository : IPharmacyBalanceRepository
     {
         private readonly IDbHelper _dbHelper = DbHelperFactory.Get();
 
@@ -39,7 +39,7 @@ VALUES
         {
             string sql = @"SELECT * FROM pharmacy_balance WHERE PharmacyId = @PharmacyId ";
 
-            return _dbHelper.ExecuteQuery<PharmacyBalanceDao>(sql,new
+            return _dbHelper.ExecuteQuery<PharmacyBalanceDao>(sql, new
             {
                 PharmacyId = pharmacyId
             });

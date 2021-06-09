@@ -30,19 +30,19 @@ namespace PharmacyMask
                 g.IncludeXmlComments(xmlPath);
             });
             services.AddControllers();
-            services.AddSingleton<PharmacyRepository>();
-            services.AddSingleton<PharmacyDetailRepository>();
-            services.AddSingleton<PharmacyProductRepository>();
-            services.AddSingleton<PharmacyBalanceRepository>();
-            services.AddSingleton<PharmacyBalanceLogRepository>();
-            services.AddSingleton<UserRepository>();
-            services.AddSingleton<UserTransactionHistoryRepository>();
-            services.AddSingleton<UserBalanceRepository>();
-            services.AddSingleton<UserBalanceLogRepository>();
-            services.AddSingleton<MaskRepository>();
-            services.AddSingleton<MaskDetailRepository>();
-            services.AddSingleton<PurchaseRepository>();
-            services.AddSingleton<PurchaseDetailRepository>();
+            services.AddSingleton<IPharmacyRepository, PharmacyRepository>();
+            services.AddSingleton<IPharmacyDetailRepository, PharmacyDetailRepository>();
+            services.AddSingleton<IPharmacyProductRepository, PharmacyProductRepository>();
+            services.AddSingleton<IPharmacyBalanceRepository, PharmacyBalanceRepository>();
+            services.AddSingleton<IPharmacyBalanceLogRepository, PharmacyBalanceLogRepository>();
+            services.AddSingleton<IUserRepository, UserRepository>();
+            services.AddSingleton<IUserTransactionHistoryRepository, UserTransactionHistoryRepository>();
+            services.AddSingleton<IUserBalanceRepository, UserBalanceRepository>();
+            services.AddSingleton<IUserBalanceLogRepository, UserBalanceLogRepository>();
+            services.AddSingleton<IMaskRepository, MaskRepository>();
+            services.AddSingleton<IMaskDetailRepository, MaskDetailRepository>();
+            services.AddSingleton<IPurchaseRepository, PurchaseRepository>();
+            services.AddSingleton<IPurchaseDetailRepository, PurchaseDetailRepository>();
 
             services.AddSingleton<ISalesManagementDomainService, SalesManagementDomainService>();
             services.AddSingleton<IPharmacyDomainService, PharmacyDomainService>();
@@ -51,6 +51,7 @@ namespace PharmacyMask
             services.AddSingleton<IProductDomainService, ProductDomainService>();
             services.AddSingleton<IPurchaseDomainService, PurchaseDomainService>();
             services.AddSingleton<IBalanceDomainService, BalanceDomainService>();
+
             services.Add(new ServiceDescriptor(typeof(DbHelperFactory), new DbHelperFactory(Configuration)));
         }
 

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace PharmacyMask.Fundation.Repository
 {
-    public class MaskDetailRepository
+    public class MaskDetailRepository : IMaskDetailRepository
     {
         private readonly IDbHelper _dbHelper = DbHelperFactory.Get();
 
@@ -51,7 +51,7 @@ VALUES
                 sql += @" AND MaskId IN @MaskId ";
             }
 
-            return _dbHelper.ExecuteQuery<MaskDetailDao>(sql,new 
+            return _dbHelper.ExecuteQuery<MaskDetailDao>(sql, new
             {
                 Id = idList,
                 MaskId = maskIdList

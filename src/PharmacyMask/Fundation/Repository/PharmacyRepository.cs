@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace PharmacyMask.Fundation.Repository
 {
-    public class PharmacyRepository
+    public class PharmacyRepository : IPharmacyRepository
     {
         private readonly IDbHelper _dbHelper = DbHelperFactory.Get();
 
@@ -36,7 +36,7 @@ VALUES
             return _dbHelper.ExecuteQuery<PharmacyDao>(sql);
         }
 
-        public List<PharmacyDao> SelectByOption(List<int> idList,string pharmacyName)
+        public List<PharmacyDao> SelectByOption(List<int> idList, string pharmacyName)
         {
             string sql = @"SELECT * FROM pharmacy WHERE 1=1 ";
 
@@ -49,7 +49,7 @@ VALUES
                 sql += $@"AND Name like '%{pharmacyName}%' ";
             }
 
-            return _dbHelper.ExecuteQuery<PharmacyDao>(sql,new 
+            return _dbHelper.ExecuteQuery<PharmacyDao>(sql, new
             {
                 Id = idList,
                 pharmacyName

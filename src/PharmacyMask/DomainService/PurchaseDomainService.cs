@@ -11,18 +11,18 @@ namespace PharmacyMask.DomainService
 {
     public class PurchaseDomainService : IPurchaseDomainService
     {
-        private readonly PurchaseRepository _purchaseRepository;
-        private readonly PurchaseDetailRepository _purchaseDetailRepository;
-        private readonly UserTransactionHistoryRepository _userTransactionHistoryRepository;
+        private readonly IPurchaseRepository _purchaseRepository;
+        private readonly IPurchaseDetailRepository _purchaseDetailRepository;
+        private readonly IUserTransactionHistoryRepository _userTransactionHistoryRepository;
         private readonly IBalanceDomainService _balanceDomainService;
         private readonly ISalesManagementDomainService _salesManagementDomainService;
         private readonly IMaskService _maskService;
         private readonly DateTime _dateTimeNow = DateTime.Now;
 
         public PurchaseDomainService(
-            PurchaseRepository purchaseRepository,
-            PurchaseDetailRepository purchaseDetailRepository,
-            UserTransactionHistoryRepository userTransactionHistoryRepository,
+            IPurchaseRepository purchaseRepository,
+            IPurchaseDetailRepository purchaseDetailRepository,
+            IUserTransactionHistoryRepository userTransactionHistoryRepository,
             IBalanceDomainService balanceDomainServic,
             ISalesManagementDomainService salesManagementDomainService,
             IMaskService maskService

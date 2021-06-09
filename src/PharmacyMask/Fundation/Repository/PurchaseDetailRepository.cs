@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace PharmacyMask.Fundation.Repository
 {
-    public class PurchaseDetailRepository
+    public class PurchaseDetailRepository : IPurchaseDetailRepository
     {
         private readonly IDbHelper _dbHelper = DbHelperFactory.Get();
 
