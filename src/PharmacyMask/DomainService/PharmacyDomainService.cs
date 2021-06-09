@@ -10,7 +10,7 @@ using System.Transactions;
 
 namespace PharmacyMask.DomainService
 {
-    public class PharmacyDomainService
+    public class PharmacyDomainService : IPharmacyDomainService
     {
         private readonly PharmacyRepository _pharmacyRepository;
         private readonly PharmacyDetailRepository _pharmacyInfoRepository;

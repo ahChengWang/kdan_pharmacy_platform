@@ -14,11 +14,11 @@ namespace PharmacyMask.Controllers
     [Route("[controller]/[action]")]
     public class SalesManagementController : ControllerBase
     {
-        private readonly PharmacyDomainService _pharmacyDomainService;
-        private readonly SalesManagementDomainService _salesManagementDomainService;
+        private readonly IPharmacyDomainService _pharmacyDomainService;
+        private readonly ISalesManagementDomainService _salesManagementDomainService;
 
-        public SalesManagementController(PharmacyDomainService pharmacyDomainService,
-            SalesManagementDomainService salesManagementDomainService)
+        public SalesManagementController(IPharmacyDomainService pharmacyDomainService,
+            ISalesManagementDomainService salesManagementDomainService)
         {
             _pharmacyDomainService = pharmacyDomainService;
             _salesManagementDomainService = salesManagementDomainService;

@@ -13,9 +13,9 @@ namespace PharmacyMask.Controllers
     [Route("[controller]/[action]")]
     public class BalanceController : ControllerBase
     {
-        private readonly BalanceDomainService _balanceDomainService;
+        private readonly IBalanceDomainService _balanceDomainService;
 
-        public BalanceController(BalanceDomainService balanceDomainService)
+        public BalanceController(IBalanceDomainService balanceDomainService)
         {
             _balanceDomainService = balanceDomainService;
         }

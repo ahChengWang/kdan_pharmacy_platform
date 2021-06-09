@@ -15,9 +15,9 @@ namespace PharmacyMask.Controllers
 
     public class MigrationController : ControllerBase
     {
-        private readonly PharmacyDomainService _pharmacyDomainService;
-        private readonly MaskService _maskDomainService;
-        private readonly UserDomainService _userDomainService;
+        private readonly IPharmacyDomainService _pharmacyDomainService;
+        private readonly IMaskService _maskDomainService;
+        private readonly IUserDomainService _userDomainService;
 
         public MigrationController(PharmacyDomainService pharmacyDomainService,
             MaskService maskDomainService,

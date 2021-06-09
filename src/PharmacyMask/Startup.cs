@@ -45,13 +45,13 @@ namespace PharmacyMask
             services.AddSingleton<PurchaseRepository>();
             services.AddSingleton<PurchaseDetailRepository>();
 
-            services.AddSingleton<SalesManagementDomainService>();
-            services.AddSingleton<PharmacyDomainService>();
-            services.AddSingleton<MaskService>();
-            services.AddSingleton<UserDomainService>();
-            services.AddSingleton<ProductDomainService>();
-            services.AddSingleton<PurchaseDomainService>();
-            services.AddSingleton<BalanceDomainService>();
+            services.AddSingleton<ISalesManagementDomainService, SalesManagementDomainService>();
+            services.AddSingleton<IPharmacyDomainService, PharmacyDomainService>();
+            services.AddSingleton<IMaskService, MaskService>();
+            services.AddSingleton<IUserDomainService, UserDomainService>();
+            services.AddSingleton<IProductDomainService, ProductDomainService>();
+            services.AddSingleton<IPurchaseDomainService, PurchaseDomainService>();
+            services.AddSingleton<IBalanceDomainService, BalanceDomainService>();
             services.Add(new ServiceDescriptor(typeof(DbHelperFactory), new DbHelperFactory(Configuration)));
         }
 

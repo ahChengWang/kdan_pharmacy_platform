@@ -11,9 +11,9 @@ namespace PharmacyMask.Controllers
     [Route("[controller]/[action]")]
     public class ProductController : ControllerBase
     {
-        private readonly ProductDomainService _productDomainService;
+        private readonly IProductDomainService _productDomainService;
 
-        public ProductController(ProductDomainService productDomainService)
+        public ProductController(IProductDomainService productDomainService)
         {
             _productDomainService = productDomainService;
         }

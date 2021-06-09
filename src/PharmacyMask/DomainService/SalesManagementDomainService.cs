@@ -10,20 +10,20 @@ using System.Transactions;
 
 namespace PharmacyMask.DomainService
 {
-    public class SalesManagementDomainService
+    public class SalesManagementDomainService : ISalesManagementDomainService
     {
         private readonly MaskRepository _maskRepository;
         private readonly MaskDetailRepository _maskInfoRepository;
         private readonly PharmacyProductRepository _pharmacyProductRepository;
         private readonly PharmacyRepository _pharmacyRepository;
-        private readonly MaskService _maskDomainService;
+        private readonly IMaskService _maskDomainService;
 
         public SalesManagementDomainService(
             MaskRepository maskRepository,
             MaskDetailRepository maskInfoRepository,
             PharmacyProductRepository pharmacyProductRepository,
             PharmacyRepository pharmacyRepository,
-            MaskService maskDomainService
+            IMaskService maskDomainService
             )
         {
             _maskRepository = maskRepository;

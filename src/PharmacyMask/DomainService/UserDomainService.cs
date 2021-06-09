@@ -9,7 +9,7 @@ using System.Transactions;
 
 namespace PharmacyMask.DomainService
 {
-    public class UserDomainService
+    public class UserDomainService : IUserDomainService
     {
         private readonly UserRepository _userRepository;
         private readonly UserTransactionHistoryRepository _userTransactionHistoryRepository;

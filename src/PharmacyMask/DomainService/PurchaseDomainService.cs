@@ -9,23 +9,23 @@ using System.Transactions;
 
 namespace PharmacyMask.DomainService
 {
-    public class PurchaseDomainService
+    public class PurchaseDomainService : IPurchaseDomainService
     {
         private readonly PurchaseRepository _purchaseRepository;
         private readonly PurchaseDetailRepository _purchaseDetailRepository;
         private readonly UserTransactionHistoryRepository _userTransactionHistoryRepository;
-        private readonly BalanceDomainService _balanceDomainService;
-        private readonly SalesManagementDomainService _salesManagementDomainService;
-        private readonly MaskService _maskService;
+        private readonly IBalanceDomainService _balanceDomainService;
+        private readonly ISalesManagementDomainService _salesManagementDomainService;
+        private readonly IMaskService _maskService;
         private readonly DateTime _dateTimeNow = DateTime.Now;
 
         public PurchaseDomainService(
             PurchaseRepository purchaseRepository,
             PurchaseDetailRepository purchaseDetailRepository,
             UserTransactionHistoryRepository userTransactionHistoryRepository,
-            BalanceDomainService balanceDomainServic,
-            SalesManagementDomainService salesManagementDomainService,
-            MaskService maskService
+            IBalanceDomainService balanceDomainServic,
+            ISalesManagementDomainService salesManagementDomainService,
+            IMaskService maskService
             )
         {
             _purchaseRepository = purchaseRepository;

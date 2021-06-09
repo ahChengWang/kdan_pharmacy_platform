@@ -12,9 +12,9 @@ namespace PharmacyMask.Controllers
     [Route("[controller]/[action]")]
     public class PurchaseController : ControllerBase
     {
-        private readonly PurchaseDomainService _purchaseDomainService;
+        private readonly IPurchaseDomainService _purchaseDomainService;
 
-        public PurchaseController(PurchaseDomainService purchaseDomainService)
+        public PurchaseController(IPurchaseDomainService purchaseDomainService)
         {
             _purchaseDomainService = purchaseDomainService;
         }

@@ -8,26 +8,26 @@ using System.Transactions;
 
 namespace PharmacyMask.DomainService
 {
-    public class BalanceDomainService
+    public class BalanceDomainService : IBalanceDomainService
     {
-        private readonly UserDomainService _userDomainService;
+        private readonly IUserDomainService _userDomainService;
         private readonly UserBalanceRepository _userBalanceRepository;
         private readonly UserBalanceLogRepository _userBalanceLogRepository;
         private readonly UserTransactionHistoryRepository _userTransactionHistoryRepository;
         private readonly PharmacyBalanceRepository _pharmacyBalanceRepository;
         private readonly PharmacyBalanceLogRepository _pharmacyBalanceLogRepository;
-        private readonly MaskService _maskService;
-        private readonly PharmacyDomainService _pharmacyDomainService;
+        private readonly IMaskService _maskService;
+        private readonly IPharmacyDomainService _pharmacyDomainService;
 
         public BalanceDomainService(
-            UserDomainService userDomainService,
+            IUserDomainService userDomainService,
             UserBalanceRepository userBalanceRepository,
             UserBalanceLogRepository userBalanceLogRepository,
             UserTransactionHistoryRepository userTransactionHistoryRepository,
             PharmacyBalanceRepository pharmacyBalanceRepository,
             PharmacyBalanceLogRepository pharmacyBalanceLogRepository,
-            MaskService maskService,
-            PharmacyDomainService pharmacyDomainService)
+            IMaskService maskService,
+            IPharmacyDomainService pharmacyDomainService)
         {
             _userDomainService = userDomainService;
             _userBalanceRepository = userBalanceRepository;
@@ -87,7 +87,7 @@ namespace PharmacyMask.DomainService
                 MaskDetailIdList = userTranHistoryId.Select(s => s.ProductDetailId).ToList(),
             });
 
-            var pharmacyList = _pharmacyDomainService.GetPharmacyInfo(userTranHistoryId.Select(s => s.PharmacyId).ToList(),null);
+            var pharmacyList = _pharmacyDomainService.GetPharmacyInfo(userTranHistoryId.Select(s => s.PharmacyId).ToList(), null);
 
             return (from uth in userTranHistoryId
                     join u in userList

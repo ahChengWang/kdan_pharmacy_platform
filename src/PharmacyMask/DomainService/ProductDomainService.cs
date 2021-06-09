@@ -6,18 +6,18 @@ using System.Linq;
 
 namespace PharmacyMask.DomainService
 {
-    public class ProductDomainService
+    public class ProductDomainService : IProductDomainService
     {
         private readonly PharmacyProductRepository _pharmacyProductRepository;
-        private readonly MaskService _maskDomainService;
+        private readonly MaskService _maskService;
 
         public ProductDomainService(
             PharmacyProductRepository pharmacyProductRepository,
-            MaskService maskDomainService
+            MaskService maskService
             )
         {
             _pharmacyProductRepository = pharmacyProductRepository;
-            _maskDomainService = maskDomainService;
+            _maskService = maskService;
         }
 
         public List<PharmacyProductEntity> GetPharmacyProductList(PharmacyProductSearchEntity searchEntity)
@@ -32,7 +32,7 @@ namespace PharmacyMask.DomainService
 
         public bool UpdateMask(ProductEntity productEntity)
         {
-            return _maskDomainService.UpdateMask(new MaskEntity
+            return _maskService.UpdateMask(new MaskEntity
             {
                 Id = productEntity.Id,
                 Name = productEntity.ProductName

@@ -10,7 +10,7 @@ using System.Transactions;
 
 namespace PharmacyMask.DomainService
 {
-    public class MaskService
+    public class MaskService : IMaskService
     {
         private readonly MaskRepository _maskRepository;
         private readonly MaskDetailRepository _maskInfoRepository;
@@ -55,7 +55,7 @@ namespace PharmacyMask.DomainService
 
             using (var scope = new TransactionScope())
             {
-                updateMaskResult  = _maskRepository.Update(maskEntity.Adapt<MaskDao>()) == 1;
+                updateMaskResult = _maskRepository.Update(maskEntity.Adapt<MaskDao>()) == 1;
 
                 if (updateMaskResult)
                     scope.Complete();
