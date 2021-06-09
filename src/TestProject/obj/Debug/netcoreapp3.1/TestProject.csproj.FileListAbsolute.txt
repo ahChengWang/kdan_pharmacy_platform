@@ -121,3 +121,4 @@ D:\kdan_PharmacyPlatform\pharmacy-platform\src\TestProject\obj\Debug\netcoreapp3
 D:\kdan_PharmacyPlatform\pharmacy-platform\src\TestProject\obj\Debug\netcoreapp3.1\TestProject.dll
 D:\kdan_PharmacyPlatform\pharmacy-platform\src\TestProject\obj\Debug\netcoreapp3.1\TestProject.pdb
 D:\kdan_PharmacyPlatform\pharmacy-platform\src\TestProject\obj\Debug\netcoreapp3.1\TestProject.genruntimeconfig.cache
+D:\kdan_PharmacyPlatform\pharmacy-platform\src\TestProject\bin\Debug\netcoreapp3.1\CoverletSourceRootsMapping

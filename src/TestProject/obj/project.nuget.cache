@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "rkaCms/v+uMz6TPo6A0F/zgXkrpQ6Ww9ZTPBP1tvKT3Lp+mrJSdVTTKA3EG0Ov2oBQmk//w7z148Fx0eHOHMMg==",
+  "dgSpecHash": "VpfK5512z034GmvCLyKOOJSZefaTKPP2PzyFG2aWOj2Ey1xeq6t6KKOqllNH7O3lg2CEJXPJAchKU9ldPE2Z/w==",
   "success": true,
   "projectFilePath": "D:\\kdan_PharmacyPlatform\\pharmacy-platform\\src\\TestProject\\TestProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\shihc\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
+    "C:\\Users\\shihc\\.nuget\\packages\\coverlet.collector\\3.0.3\\coverlet.collector.3.0.3.nupkg.sha512",
     "C:\\Users\\shihc\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
     "C:\\Users\\shihc\\.nuget\\packages\\expectedobjects\\3.5.3\\expectedobjects.3.5.3.nupkg.sha512",
     "C:\\Users\\shihc\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",
@@ -32,6 +33,7 @@
     "C:\\Users\\shihc\\.nuget\\packages\\nuget.frameworks\\5.0.0\\nuget.frameworks.5.0.0.nupkg.sha512",
     "C:\\Users\\shihc\\.nuget\\packages\\nunit\\3.12.0\\nunit.3.12.0.nupkg.sha512",
     "C:\\Users\\shihc\\.nuget\\packages\\nunit3testadapter\\3.16.1\\nunit3testadapter.3.16.1.nupkg.sha512",
+    "C:\\Users\\shihc\\.nuget\\packages\\reportgenerator\\4.8.9\\reportgenerator.4.8.9.nupkg.sha512",
     "C:\\Users\\shihc\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\shihc\\.nuget\\packages\\swashbuckle.aspnetcore\\6.1.4\\swashbuckle.aspnetcore.6.1.4.nupkg.sha512",
     "C:\\Users\\shihc\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.1.4\\swashbuckle.aspnetcore.swagger.6.1.4.nupkg.sha512",
