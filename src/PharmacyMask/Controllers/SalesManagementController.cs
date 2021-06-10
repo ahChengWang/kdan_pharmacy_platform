@@ -25,9 +25,9 @@ namespace PharmacyMask.Controllers
         }
 
         /// <summary>
-        /// List all masks that are sold by a given pharmacy, sorted by mask name or mask price
+        /// List all masks that are sold by a given pharmacy, sorted by mask name or mask price 
         /// </summary>
-        /// <param name="searchModel"></param>
+        /// <param name="searchModel"> 代入 pharmacyName and orderTermId, 其餘 null 即可 </param>
         /// <response code="100">success</response>
         /// <response code="101">fail</response>
         [HttpGet]
@@ -81,7 +81,7 @@ namespace PharmacyMask.Controllers
         /// <summary>
         /// List all pharmacies that have more or less than x mask products within a price range
         /// </summary>
-        /// <param name="searchModel"></param>
+        /// <param name="searchModel"> 代入 pharmacyName and orderTermId, 其餘 null 即可 </param>
         /// <response code="100">success</response>
         /// <response code="101">fail</response>
         [HttpGet]
@@ -121,7 +121,7 @@ namespace PharmacyMask.Controllers
         /// <summary>
         /// Search for pharmacies or masks by name, ranked by relevance to search term
         /// </summary>
-        /// <param name="searchModel"></param>
+        /// <param name="searchModel"> 代入 searchTermId and pharmacyName or maskName, 其餘 null 即可 </param>
         /// <response code="100">success</response>
         /// <response code="101">fail</response>
         [HttpGet]

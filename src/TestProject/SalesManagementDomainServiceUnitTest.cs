@@ -17,11 +17,12 @@ namespace PharmacyMask.DomainService
         {
 
             _fakeSalesManagementDomainServiceForTest = new SalesManagementDomainServiceForTest(
-            maskRepository:null,
+            maskRepository: null,
             maskInfoRepository: null,
             pharmacyProductRepository: null,
             pharmacyRepository: null,
-            maskDomainService: null
+            maskDomainService: null,
+            productDomainService: null
             );
         }
 

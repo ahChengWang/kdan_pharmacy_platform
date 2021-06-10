@@ -41,7 +41,7 @@ namespace PharmacyMask.DomainService
             var createResult = true;
 
             var pharmacyProductList = _salesManagementDomainService.GetPharmacyProductList(
-                new PharmacyProductOptionEntity
+                new PharmacyProductSearchEntity
                 {
                     IdList = createListEntity.CreateDetailList.Select(s => s.PharmacyProductId).ToList()
                 });

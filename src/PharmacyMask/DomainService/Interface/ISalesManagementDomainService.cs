@@ -6,7 +6,7 @@ namespace PharmacyMask.DomainService
     public interface ISalesManagementDomainService
     {
         bool DeleteProduct(PharmacyProductEntity maskEntity);
-        List<PharmacyProductEntity> GetPharmacyProductList(PharmacyProductOptionEntity optionEntity);
+        List<PharmacyProductEntity> GetPharmacyProductList(PharmacyProductSearchEntity optionEntity);
         List<PharmacyProductMaskEntity> GetPharmacyProductMaskList(ProductSearchEntity searchEntity, List<PharmacyEntity> pharmacyList);
         List<PharmacyProductMaskSummaryEntity> GetPharmacyProductMaskSummary(ProductSearchEntity searchEntity, List<PharmacyEntity> pharmacyList);
         void MigrationMask(List<MaskMigrationEntity> maskMigraEntity);

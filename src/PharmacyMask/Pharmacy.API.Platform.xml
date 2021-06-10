@@ -78,7 +78,8 @@
         </member>
         <member name="M:PharmacyMask.Controllers.SalesManagementController.GetMasksByPharmacy(PharmacyMask.BackOffice.Model.PharmacyMaskSearchModel)">
             <summary>
-            List all masks that are sold by a given pharmacy, sorted by mask name or mask price
+            List all masks that are sold by a given pharmacy, sorted by mask name or mask price <br/>
+            parameter 代入 pharmacyName and orderTermId
             </summary>
             <param name="searchModel"></param>
             <response code="100">success</response>
@@ -144,8 +145,12 @@
         </member>
         <member name="P:PharmacyMask.BackOffice.Model.PharmacyMaskSearchModel.SearchTermId">
             <summary>
-            1. 後端出 pharmay option 列出所有藥局及對應 id, 多選 id逗號串聯 
-            2. 利用字串 模糊查詢 (V)
+            SearchTermId (查詢項目) 1:PharmacyName, 2:MaskName
+            </summary>
+        </member>
+        <member name="P:PharmacyMask.BackOffice.Model.PharmacyMaskSearchModel.OrderTermId">
+            <summary>
+            OrderTermId (排序項目) 1:PharmacyName, 2:MaskName, 3:MaskPrice
             </summary>
         </member>
     </members>

@@ -17,13 +17,15 @@ namespace PharmacyMask.DomainService
         private readonly IPharmacyProductRepository _pharmacyProductRepository;
         private readonly IPharmacyRepository _pharmacyRepository;
         private readonly IMaskService _maskDomainService;
+        private readonly IProductDomainService _productDomainService;
 
         public SalesManagementDomainService(
             IMaskRepository maskRepository,
             IMaskDetailRepository maskInfoRepository,
             IPharmacyProductRepository pharmacyProductRepository,
             IPharmacyRepository pharmacyRepository,
-            IMaskService maskDomainService
+            IMaskService maskDomainService,
+            IProductDomainService productDomainService
             )
         {
             _maskRepository = maskRepository;
@@ -31,9 +33,10 @@ namespace PharmacyMask.DomainService
             _pharmacyProductRepository = pharmacyProductRepository;
             _pharmacyRepository = pharmacyRepository;
             _maskDomainService = maskDomainService;
+            _productDomainService = productDomainService;
         }
 
-        public List<PharmacyProductEntity> GetPharmacyProductList(PharmacyProductOptionEntity optionEntity)
+        public List<PharmacyProductEntity> GetPharmacyProductList(PharmacyProductSearchEntity optionEntity)
         => GetPharmacyProduct(optionEntity);
 
         public List<PharmacyProductMaskEntity> GetPharmacyProductMaskList(
@@ -51,11 +54,11 @@ namespace PharmacyMask.DomainService
                 MaskName = searchEntity.ProductName
             });
 
-            var pharmacyProductMaskList = GetPharmacyProduct(new PharmacyProductOptionEntity
+            var pharmacyProductMaskList = GetPharmacyProduct(new PharmacyProductSearchEntity
             {
                 IdList = null,
                 PharmacyIdList = null,
-                TypeDetailIdList = msakDetailList.Select(s => s.DetailId).ToList(),
+                ProductDetailIdList = msakDetailList.Select(s => s.DetailId).ToList(),
                 ProductTypeIdList = new List<PharmacyProductTypeEnum> { PharmacyProductTypeEnum.Mask },
                 PriceFrom = searchEntity.PriceFrom,
                 PriceTo = searchEntity.PriceTo
@@ -261,15 +264,16 @@ namespace PharmacyMask.DomainService
         protected virtual List<MaskDetailEntity> GetMaskDetail(MaskSearchOptionEntity optionEntity)
         => _maskDomainService.GetMaskDetail(optionEntity);
 
-        protected virtual List<PharmacyProductEntity> GetPharmacyProduct(PharmacyProductOptionEntity optionEntity)
-        => _pharmacyProductRepository.SelectByOption(
-                optionEntity.IdList,
-                optionEntity.PharmacyIdList,
-                optionEntity.TypeDetailIdList,
-                optionEntity.ProductTypeIdList,
-                optionEntity.PriceFrom,
-                optionEntity.PriceTo
-                ).Select(s => s.Adapt<PharmacyProductEntity>()).ToList();
+        protected virtual List<PharmacyProductEntity> GetPharmacyProduct(PharmacyProductSearchEntity optionEntity)
+        => _productDomainService.GetPharmacyProductList(new PharmacyProductSearchEntity
+        {
+            IdList = optionEntity.IdList,
+            PharmacyIdList = optionEntity.PharmacyIdList,
+            ProductTypeIdList = optionEntity.ProductTypeIdList,
+            ProductDetailIdList = optionEntity.ProductDetailIdList,
+            PriceFrom = optionEntity.PriceFrom,
+            PriceTo = optionEntity.PriceTo
+        });
 
         #endregion
     }

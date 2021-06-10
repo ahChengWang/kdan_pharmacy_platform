@@ -14,12 +14,14 @@ namespace PharmacyMask.DomainService
             IMaskDetailRepository maskInfoRepository,
             IPharmacyProductRepository pharmacyProductRepository,
             IPharmacyRepository pharmacyRepository,
-            IMaskService maskDomainService
+            IMaskService maskDomainService,
+            IProductDomainService productDomainService
             ) : base(maskRepository,
             maskInfoRepository,
             pharmacyProductRepository,
             pharmacyRepository,
-            maskDomainService)
+            maskDomainService,
+            productDomainService)
         { }
 
         public void AddMsakDetailList(List<MaskDetailEntity> entityList)
@@ -38,7 +40,7 @@ namespace PharmacyMask.DomainService
             return _maskDetailList;
         }
 
-        protected override List<PharmacyProductEntity> GetPharmacyProduct(PharmacyProductOptionEntity optionEntity)
+        protected override List<PharmacyProductEntity> GetPharmacyProduct(PharmacyProductSearchEntity optionEntity)
         {
             return _pharmacyProductList;
         }

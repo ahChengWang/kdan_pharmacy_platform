@@ -22,10 +22,10 @@ namespace PharmacyMask.DomainService
 
         public List<PharmacyProductEntity> GetPharmacyProductList(PharmacyProductSearchEntity searchEntity)
         => _pharmacyProductRepository.SelectByOption(
-                searchEntity.Id,
-                searchEntity.PharmacyId,
-                searchEntity.ProductDetailId,
-                searchEntity.ProductTypeId,
+                searchEntity.IdList,
+                searchEntity.PharmacyIdList,
+                searchEntity.ProductDetailIdList,
+                searchEntity.ProductTypeIdList,
                 searchEntity.PriceFrom,
                 searchEntity.PriceTo
                 ).Select(s => s.Adapt<PharmacyProductEntity>()).ToList();
